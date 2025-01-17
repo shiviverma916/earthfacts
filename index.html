@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facts About Earth</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #e0f7fa, #b2ebf2);
+            color: #004d40;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .facts-container {
+            margin: 20px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: none; /* Initially hide all facts */
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #a7ffeb;
+            border-radius: 10px;
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0;
+        }
+
+        li.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Facts About Earth 🌍</h1>
+        <div class="facts-container">
+            <ul id="facts-list">
+                <!-- Facts will be inserted here by JavaScript -->
+            </ul>
+        </div>
+        <button id="reveal-button">Reveal a Fact</button>
+    </div>
+    <script>
+        const facts = [
+            "Earth is the third planet from the Sun.",
+            "Approximately 71% of Earth's surface is covered by water.",
+            "Earth has a unique atmosphere composed of 78% nitrogen and 21% oxygen.",
+            "The planet is about 4.5 billion years old.",
+            "Earth is the only known planet to support life.",
+            "It has one natural satellite, the Moon.",
+            "Earth's lithosphere is divided into tectonic plates.",
+            "The planet has diverse ecosystems, including forests, deserts, and oceans.",
+            "Earth experiences a variety of climate zones.",
+            "It is home to an estimated 8.7 million species of plants and animals."
+        ];
+
+        let currentFactIndex = 0;
+
+        const factsList = document.getElementById('facts-list');
+        const revealButton = document.getElementById('reveal-button');
+
+        // Populate the facts list
+        facts.forEach((fact, index) => {
+            const li = document.createElement('li');
+            li.textContent = fact;
+            li.id = `fact-${index}`;
+            factsList.appendChild(li);
+        });
+
+        // Reveal a fact when the button is clicked
+        revealButton.addEventListener('click', () => {
+            if (currentFactIndex < facts.length) {
+                const factElement = document.getElementById(`fact-${currentFactIndex}`);
+                factElement.classList.add('show');
+                currentFactIndex++;
+            } else {
+                alert("All facts have been revealed!");
+            }
+        });
+    </script>
+</body>
+</html>
